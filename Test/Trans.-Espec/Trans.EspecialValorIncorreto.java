@@ -32,7 +32,7 @@ public class TransespecialerroTest {
    * 
    */
   @Test
-  //teste transação especial com valor menor que a regra -> mensagem de erro
+  //Teste transação especial com valor menor que a regra -> mensagem de erro
   public void transespecialerro() {
     driver.get("http://10.2.1.110:8080//");
     {
