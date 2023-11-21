@@ -22,7 +22,7 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class TodasasPropdeEmendaTest {
+public class TutorialPLOA2024Test {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -37,13 +37,21 @@ public class TodasasPropdeEmendaTest {
     driver.quit();
   }
   @Test
-  public void todasasPropdeEmenda() {
+  public void tutorialPLOA2024() {
     // Abrir site
-    driver.get("http://10.2.1.110:8080/legislativo-proposta-emenda-loa/2024/EMENDA/new");
-    // Expandir menu
-    driver.findElement(By.cssSelector("#legislativo-menu > span > span")).click();
-    driver.findElement(By.id("submenuEmendasLOA5Item")).click();
-    // Clicar em Propostas de Emenda
-    driver.findElement(By.cssSelector("#submenuEmendasLOA5Collapse li:nth-child(1) span")).click();
+    driver.get("http://10.2.1.110:8080/legislativo-proposta-emenda-loa/2024/gabinete");
+    driver.findElement(By.id("tutorial-menu")).click();
+    // Afirmar que o menu aparece
+    {
+      List<WebElement> elements = driver.findElements(By.cssSelector(".show:nth-child(2)"));
+      assert(elements.size() > 0);
+    }
+    // Verificar que o texto certo aparece
+    assertThat(driver.findElement(By.cssSelector(".show > li:nth-child(1) span")).getText(), is("1 Regras"));
+    assertThat(driver.findElement(By.cssSelector(".dropdown-menu > li:nth-child(2) span")).getText(), is("2 Sistema"));
+    assertThat(driver.findElement(By.cssSelector("li:nth-child(3) > .dropdown-item > span")).getText(), is("3 Saúde (ASPS)"));
+    assertThat(driver.findElement(By.cssSelector("li:nth-child(4) > .dropdown-item > span")).getText(), is("4 Transferência Especial"));
+    assertThat(driver.findElement(By.cssSelector("li:nth-child(5) span")).getText(), is("5 Demais Destinações"));
+    assertThat(driver.findElement(By.cssSelector("li:nth-child(6) span")).getText(), is("6 Enviar à SEGMD"));
   }
 }
