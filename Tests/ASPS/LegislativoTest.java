@@ -28,7 +28,7 @@ public class LegislativoTest {
   JavascriptExecutor js;
   @Before
   public void setUp() {
-    driver = new FirefoxDriver();
+    driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
@@ -38,12 +38,15 @@ public class LegislativoTest {
   }
   @Test
   public void legislativo() {
+    // Abrir site
     driver.get("http://10.2.1.110:8080/legislativo-proposta-emenda-loa/2024/gabinete");
     driver.findElement(By.cssSelector("#legislativo-menu > span > span")).click();
+    // Afirmar que o menu aparece
     {
       List<WebElement> elements = driver.findElements(By.cssSelector(".show > .dropdown-menu"));
       assert(elements.size() > 0);
     }
+    // Verificar se os textos certos aparecem
     assertThat(driver.findElement(By.cssSelector("#submenuEmendasLOAItem span")).getText(), is("Anos Anteriores - LOA 2020"));
     assertThat(driver.findElement(By.cssSelector("#submenuEmendasLOA2Item span")).getText(), is("Anos Anteriores - LOA 2021"));
     assertThat(driver.findElement(By.cssSelector("#submenuEmendasLOA3Item span")).getText(), is("Anos Anteriores - LOA 2022"));

@@ -28,7 +28,7 @@ public class MenuSanducheTest {
   JavascriptExecutor js;
   @Before
   public void setUp() {
-    driver = new FirefoxDriver();
+    driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
@@ -38,10 +38,14 @@ public class MenuSanducheTest {
   }
   @Test
   public void menuSanduche() {
+    // Abrir site (diminuir test speed)
     driver.get("http://10.2.1.110:8080/legislativo-proposta-emenda-loa/2024/gabinete");
     driver.manage().window().setSize(new Dimension(890, 860));
+    // Abrir menu sanduíche
     driver.findElement(By.cssSelector(".fa-bars")).click();
+    // Abrir menu sanduíche pela 2º vez pq é bugado
     driver.findElement(By.cssSelector(".fa-bars")).click();
+    // Navbar presente?
     {
       List<WebElement> elements = driver.findElements(By.cssSelector(".navbar-nav"));
       assert(elements.size() > 0);
@@ -66,10 +70,12 @@ public class MenuSanducheTest {
       List<WebElement> elements = driver.findElements(By.cssSelector(".nav-item:nth-child(1) > .nav-link"));
       assert(elements.size() > 0);
     }
+    // A navbar tá mostrando as opções do menu na página?
     assertThat(driver.findElement(By.cssSelector(".nav-item:nth-child(1) span > span")).getText(), is("INÍCIO"));
     assertThat(driver.findElement(By.cssSelector("#legislativo-menu > span > span")).getText(), is("LEGISLATIVO"));
     assertThat(driver.findElement(By.cssSelector("#tutorial-menu > span > span")).getText(), is("TUTORIAL PLOA 2024"));
     assertThat(driver.findElement(By.cssSelector("#account-menu > span > span")).getText(), is("USUARIO"));
+    // Fechar menu sanduíche
     driver.findElement(By.cssSelector(".fa-bars > path")).click();
   }
 }

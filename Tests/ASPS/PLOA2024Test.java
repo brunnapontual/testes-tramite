@@ -28,7 +28,7 @@ public class PLOA2024Test {
   JavascriptExecutor js;
   @Before
   public void setUp() {
-    driver = new FirefoxDriver();
+    driver = new ChromeDriver();
     js = (JavascriptExecutor) driver;
     vars = new HashMap<String, Object>();
   }
@@ -38,9 +38,13 @@ public class PLOA2024Test {
   }
   @Test
   public void pLOA2024() {
+    // Abrir site
     driver.get("http://10.2.1.110:8080/legislativo-proposta-emenda-loa/2024/gabinete");
+    // Abrir legislativo
     driver.findElement(By.id("legislativo-menu")).click();
+    // Abrir menu PLOA 2024
     driver.findElement(By.cssSelector("#submenuEmendasLOA5Item .svg-inline--fa")).click();
+    // Afirmar que menu de PLOA 2024 existe
     {
       List<WebElement> elements = driver.findElements(By.cssSelector("#submenuEmendasLOA5Collapse li:nth-child(1)"));
       assert(elements.size() > 0);

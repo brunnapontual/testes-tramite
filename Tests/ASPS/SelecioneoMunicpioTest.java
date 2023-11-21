@@ -22,7 +22,7 @@ import org.openqa.selenium.Keys;
 import java.util.*;
 import java.net.MalformedURLException;
 import java.net.URL;
-public class TodasasPropdeEmendaTest {
+public class SelecioneoMunicpioTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
@@ -37,13 +37,35 @@ public class TodasasPropdeEmendaTest {
     driver.quit();
   }
   @Test
-  public void todasasPropdeEmenda() {
+  public void selecioneoMunicpio() {
     // Abrir site
     driver.get("http://10.2.1.110:8080/legislativo-proposta-emenda-loa/2024/EMENDA/new");
-    // Expandir menu
-    driver.findElement(By.cssSelector("#legislativo-menu > span > span")).click();
-    driver.findElement(By.id("submenuEmendasLOA5Item")).click();
-    // Clicar em Propostas de Emenda
-    driver.findElement(By.cssSelector("#submenuEmendasLOA5Collapse li:nth-child(1) span")).click();
+    // Funcionamento botões
+    driver.findElement(By.xpath("(//input[@type=\'text\'])[8]")).click();
+    driver.findElement(By.xpath("//municipio-searchable-dropdown/div/ng-select/div/span")).click();
+    driver.findElement(By.xpath("//municipio-searchable-dropdown/div/ng-select/div/span")).click();
+    // Checar Dropdown
+    {
+      List<WebElement> elements = driver.findElements(By.cssSelector(".ng-dropdown-panel"));
+      assert(elements.size() > 0);
+    }
+    // Seleciona
+    driver.findElement(By.xpath("//div/div[2]/div/div")).click();
+    {
+      List<WebElement> elements = driver.findElements(By.xpath("//span[contains(.,\'Abreu e Lima\')]"));
+      assert(elements.size() > 0);
+    }
+    // Botão X existe?
+    {
+      List<WebElement> elements = driver.findElements(By.cssSelector(".ng-clear-wrapper"));
+      assert(elements.size() > 0);
+    }
+    // Botão X
+    driver.findElement(By.cssSelector(".ng-clear-wrapper")).click();
+    // Botão X saui?
+    {
+      List<WebElement> elements = driver.findElements(By.cssSelector(".ng-clear-wrapper"));
+      assert(elements.size() == 0);
+    }
   }
 }
