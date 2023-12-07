@@ -1,0 +1,1 @@
+CALL java -Dwebdriver.chrome.driver.exe -jar selenium-server-4.14.1.jar standalone --selenium-manager true

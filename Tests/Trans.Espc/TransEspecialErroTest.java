@@ -14,7 +14,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.interactions.Actions;
-public class TransespecialerroTest {
+public class TransEspecialErroTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
