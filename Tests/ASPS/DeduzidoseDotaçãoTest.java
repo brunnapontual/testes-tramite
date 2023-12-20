@@ -86,8 +86,8 @@ public class DeduzidoseDotaçãoTest {
     // Aparece os 3 automaticamente ao selecionar emenda?
     driver.findElement(By.xpath("//input[@type=\'text\']")).click();
     driver.findElement(By.xpath("//span[contains(.,\'1. Impositiva - Saúde (Ações e Serviços Públicos de Saúde)\')]")).click();
-    assertThat(driver.findElement(By.xpath("//div/div/ng-select/div/div/div[2]/span[2]")).getText(), is("2866 - Reserva para Emendas Parlamentares"));
-    assertThat(driver.findElement(By.xpath("//grupo-despesa-searchable-dropdown/div/ng-select/div/div/div[2]/span[2]")).getText(), is("33 - Outras Despesas Correntes"));
-    assertThat(driver.findElement(By.xpath("//div/div/ng-select/div/div/div[2]/span[2]")).getText(), is("5000 - Recursos não vinculados de Impostos"));
+    MatcherAssert.assertThat(driver.findElement(By.xpath("//div/div/ng-select/div/div/div[2]/span[2]")).getText(), is("2866 - Reserva para Emendas Parlamentares"));
+    MatcherAssert.assertThat(driver.findElement(By.xpath("//grupo-despesa-searchable-dropdown/div/ng-select/div/div/div[2]/span[2]")).getText(), is("33 - Outras Despesas Correntes"));
+    MatcherAssert.assertThat(driver.findElement(By.xpath("//div/div/ng-select/div/div/div[2]/span[2]")).getText(), is("5000 - Recursos não vinculados de Impostos"));
   }
 }
